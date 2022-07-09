@@ -1,28 +1,6 @@
-import os
-from unittest.mock import MagicMock
-
 import pytest
 
-from dao.director import DirectorDAO
-from dao.model.director import Director
 from service.director import DirectorService
-
-
-@pytest.fixture()
-def director_dao():
-    director_dao = DirectorDAO(None)
-
-    first_director = Director(id=1, name='Ричард Келли')
-    second_director = Director(id=2, name='Пит Доктер')
-    third_director = Director(id=3, name='Шон Маккормак')
-
-    director_dao.get_one = MagicMock(return_value=first_director)
-    director_dao.get_all = MagicMock(return_value=[first_director, second_director, third_director])
-    director_dao.create = MagicMock(return_value=Director(id=3))
-    director_dao.delete = MagicMock()
-    director_dao.update = MagicMock()
-
-    return director_dao
 
 
 class TestDirectorService:
@@ -59,6 +37,3 @@ class TestDirectorService:
             'name': 'director'
         }
         self.director_service.update(director_d)
-
-if __name__ == '__main__':
-    os.system('pytest')

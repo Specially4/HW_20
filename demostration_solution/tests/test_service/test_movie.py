@@ -1,54 +1,6 @@
-from unittest.mock import MagicMock
-
 import pytest
 
-from dao.movie import MovieDAO
-from dao.model.movie import Movie
 from service.movie import MovieService
-
-
-@pytest.fixture()
-def movie_dao():
-    movie_dao = MovieDAO(None)
-
-    first_movie = Movie(
-        id=1,
-        title='First_movie',
-        description='',
-        trailer='None',
-        year=2000,
-        rating=0,
-        genre_id=2,
-        director_id=3
-    )
-    second_movie = Movie(
-        id=2,
-        title='Second_movie',
-        description='',
-        trailer='None',
-        year=2002,
-        rating=0,
-        genre_id=3,
-        director_id=4
-    )
-    third_movie = Movie(
-        id=3,
-        title='Third_movie',
-        description='',
-        trailer='None',
-        year=2003,
-        rating=0,
-        genre_id=4,
-        director_id=5
-    )
-
-    movie_dao.get_one = MagicMock(return_value=first_movie)
-    movie_dao.get_all = MagicMock(return_value=[first_movie, second_movie, third_movie])
-    movie_dao.create = MagicMock(return_value=Movie(id=3))
-    movie_dao.delete = MagicMock()
-    movie_dao.update = MagicMock()
-
-    return movie_dao
 
 
 class TestMovieService:
